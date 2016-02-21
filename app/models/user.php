@@ -125,6 +125,19 @@ class User extends Model{
 
   }
 
+  public function isAdmin(){
+    if(!$this->session->read('auth')){
+       $this->session->setFlash('danger', $this->options['restriction_msg']);
+       lib\App::redirect("users/login");
+    }
+    if($this->session->read('auth')->admin != 1){
+      $this->session->setFlash('danger', $this->options['restriction_msg']);
+       lib\App::redirect("");
+    }
+
+  }
+
+
   public function user(){
     if(!$this->session->read('auth')){
       return false;

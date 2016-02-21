@@ -23,6 +23,7 @@
 
     <!-- MetisMenu CSS -->
     <link href="<?= lib\App::$_assets_path; ?>bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="<?= lib\App::$_assets_path; ?>fonts/icons.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
     <?= HtmlHelper::css(['sb-admin-2/timeline']); ?>
@@ -111,6 +112,20 @@
                         </li>
                         <li>
                             <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Home</a>', "/");?>
+                            <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Tutoriel</a>', "/");?>
+                            <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Formation</a>', "formation/");?>
+                        </li>
+                        <li class="">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Participer<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <?= link_to('Tutoriel', "participer/tutoriel");?>
+                                </li>
+                                <li>
+                                <?= link_to('Formation', "participer/formation");?>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li class="hidden">
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

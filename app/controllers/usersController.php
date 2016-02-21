@@ -9,21 +9,6 @@ class UsersController extends Controller{
 
 	}
 
-	public function index(){
-
-		$this->loadModel('User');
-		$this->User->foundPage();
-
-		$d=array();
-		$d['nom'] = "alex";
-		$d['title_for_layout'] = "titre";
-
-
-
-		$this->set($d);
-		$this->render('index');
-
-	}
 
 	public function login(){
 
@@ -89,7 +74,8 @@ class UsersController extends Controller{
 		 	if(empty($errors)){
 		 		$this->User->register($_POST['username'], $_POST['password'], $_POST['email']);
 		 		lib\Session::getInstance()->setFlash('success', 'Un email de confirmation vous a été envoyé pour valider votre compte');
-				lib\App::redirect('login');
+		 		unset($_POST);
+				lib\App::redirect('users/login');
 		 	}else{
 		 		$d['errors'] = $errors;
 		 	}
@@ -131,6 +117,7 @@ class UsersController extends Controller{
 		$d['title_for_layout'] = "titre";
 		$this->loadModel('User');
 		$this->User->restrict();
+		$this->User->isAdmin();
 
 		if (!empty($_POST)) {
 			$validator = new lib\ArrayValidator($_POST);
