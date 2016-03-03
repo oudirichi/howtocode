@@ -32,13 +32,10 @@
     vertical-align: middle;
 }
 .info h4 {
-    /*font-size: 26px;*/
+    font-size: 26px;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin: 10px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    line-height: 1.4;
 }
 .info > p {
     color: #717171;
@@ -74,17 +71,17 @@
                 <span class="<?= $v->icon; ?>"></span>
             </div>
             <div class="info">
-                <h4 class="text-center"><?= $v->name; ?></h4>
+                <h4 class="text-center"><?= $v->title; ?></h4>
                 <p>
                 <?php 
-                    if(isset($v->description) && !empty($v->description)) 
-                        echo $v->description;
+                    if(isset($v->title) && !empty($v->title)) 
+                        echo $v->title;
                     else
                         echo 'Description a venir';
 
                 ?>
                 </p>
-                <a href="<?= $v->link; ?>" class="btn">Liens</a>
+                <?= link_to("Liens", "tutoriel/{$v->link}/{$v->slug}", ['class' => ["btn"]]); ?>
             </div>
         </div>
     </div>
@@ -92,3 +89,4 @@
 <?php endforeach ?>
 </div>
 <?php endif ?>
+

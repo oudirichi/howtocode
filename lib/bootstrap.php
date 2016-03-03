@@ -30,7 +30,7 @@ $lang = $session->read("lang");
 $i18n = new lib\i18n($lang);
 $i18n->init();
 
-
+lib\ViewHelper\HtmlHelper::setDefault();
 
 
 // Function to get translation with more ease

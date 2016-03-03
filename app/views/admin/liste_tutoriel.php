@@ -5,12 +5,16 @@
 		<thead>
 			<tr>
 				<th>Nom</th>
+				<th>Categorie</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 	 		<?php foreach ($tutoriel as $v): ?>
 				<tr>
-					<td><?= link_to($v->title, "formation/$action/{$v->slug}"); ?></td>
+					<td><?= $v->title; ?></td>
+					<td><?= $v->name; ?></td>
+					<td><?= link_to("Modifier", "admin/formation/{$v->id}" ,["class" => ["btn btn-primary"]]); ?> <?= link_to("Supprimer", "admin/delete_formation/{$v->id}" ,["class" => ["btn btn-danger"]]); ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

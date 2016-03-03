@@ -11,7 +11,7 @@ use lib\ViewHelper\HtmlHelper;
 	}
  </style>
     <br><br>
-	<p>Cette page vous permet de nous envoyer des tutoriels complets ou partiels.</p>
+	<p>Cette page vous permet de nous envoyer des formation complets ou partiels.</p>
 	<form method="post">
 
 		<div class="row">

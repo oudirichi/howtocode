@@ -1,6 +1,4 @@
 <?php  use lib\ViewHelper\HtmlHelper; ?>
-<?php  HtmlHelper::setDefault(); ?>
-
 
 
 <!DOCTYPE html>
@@ -60,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <?= link_to("GPDB", "/", ["class" => ["navbar-brand"]]);?>
+                <?= link_to("#HOWTOCODE", "/", ["class" => ["navbar-brand"]]);?>
                 
             </div>
             <!-- /.navbar-header -->
@@ -112,7 +110,7 @@
                         </li>
                         <li>
                             <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Home</a>', "/");?>
-                            <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Tutoriel</a>', "/");?>
+                            <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Tutoriel</a>', "tutoriel/");?>
                             <?= link_to('<i class="fa fa-list-alt fa-fw"></i> Formation</a>', "formation/");?>
                         </li>
                         <li class="">

@@ -11,12 +11,7 @@ class Formation extends Model{
 	}
 
   	public function categories(){
-	    $categories = $this->db->query("SELECT * FROM info_category")->fetchAll(PDO::FETCH_OBJ);
-	    $out = [];
-	    foreach ($categories as $category) {
-	    	$out[$category->id] = $category->name;
-	    }
-	    return $out;
+	    return $this->db->query("SELECT * FROM info_category")->fetchAll(PDO::FETCH_ASSOC);
   	}
 
   	public function slug_categories(){
@@ -33,38 +28,28 @@ class Formation extends Model{
   	/*public function all_categories(){
 	    return $this->db->query("SELECT * FROM info_category")->fetchAll(PDO::FETCH_OBJ);
   	}*/
-  	function available_formations(){
-    	$select = $this->db->query("SELECT c.name,c.link,c.icon,c.description FROM info_category c
-                  INNER JOIN $this->table t ON t.id_category=c.id
-                  WHERE t.online=1
-                  GROUP BY c.name,t.online
-                  HAVING COUNT(t.online)>=1
-                  ");
+  	function available_formations($category = null){
+  		if(!$category){
+
+	    	$select = $this->db->query("SELECT t.slug, t.title, c.name,c.link,c.icon FROM info_category c
+	                  INNER JOIN $this->table t ON t.id_category=c.id
+	                  WHERE t.online=1
+	                  GROUP BY c.name,t.online
+                  	  HAVING COUNT(t.online)>=1
+	                  ");
+  		}else{
+
+  			$select = $this->db->query("SELECT t.slug, t.title, c.name,c.link,c.icon FROM info_category c
+	                  INNER JOIN $this->table t ON t.id_category=c.id
+	                  WHERE t.online=1 
+	                  AND c.link = ?
+	                  ", [$category]);
+
+  		}
 
     	return $select->fetchAll(PDO::FETCH_OBJ);
   }
 
-
-  	function getList($link){
-	    $link=htmlspecialchars($link);
-	    $select = $this->db->query("SELECT t.title, t.online, t.slug, t.publication, t.modification,t.online FROM $this->table t 
-	                          INNER JOIN info_category c ON t.id_category=c.id  
-	                          WHERE c.link=? ORDER BY title ASC", [$link]);
-
-	    $d['tutoriel']=$select->fetchAll();
-
-	    $d['nb_total']=count($d['tutoriel']);
-
-	    $d['nb_online']=0;
-
-	    foreach ($d['tutoriel'] as $v) {
-	      if($v['online']==1){
-	        $d['nb_online']++;
-	      }
-	    }
-
-	    return $d;
-	}
 
   	function tuto($category,$slug){
     	$category=htmlspecialchars($category);
@@ -89,6 +74,18 @@ class Formation extends Model{
 		$id= (int)$d['tutoriel']['id'];
 	    return $d;
   }
+
+	function create($title, $content, $slug, $id_category, $online){
+  		$this->db->query("INSERT INTO $this->table SET title = ?, content = ?, slug = ?, id_category = ?, online=?", [
+						$title,
+						$content,
+						$slug,
+						$id_category,
+						$online
+					]);
+
+  		return $this->db->lastInsertId();
+  	}
+
   	
 }
-?>

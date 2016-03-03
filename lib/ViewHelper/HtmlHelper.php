@@ -109,15 +109,18 @@ class HtmlHelper{
 		//si path est un tableau, alors ajoute contatene les elements dans la variable
 		if (is_array($path)) {
 			$out = '';
+			$format = '<script type="text/javascript" src="'. self::$_scriptpath .'%s.js"></script>';
 			foreach ($path as $v) {
-				$out .= '<script type="text/javascript" src="';
+				//$out .= '<script type="text/javascript" src="';
 
 				if ($v[0]=="/") {
-					$out.= self::$_scriptpath . "{$v}.js";
+					$out.= sprintf($format, "$v");
+					//$out.= self::$_scriptpath . "{$v}.js";
 				}else{
-					$out.= self::$_scriptpath . "/{$v}.js";
+					$out.= sprintf($format, "/$v");
+					//$out.= self::$_scriptpath . "/{$v}.js";
 				}
-				$out.='"></script>';
+				//$out.='"></script>';
 			}
 			return $out;
 
