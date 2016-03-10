@@ -14,7 +14,7 @@
 				<tr>
 					<td><?= $v->title; ?></td>
 					<td><?= $v->name; ?></td>
-					<td><?= link_to("Modifier", "admin/formation/{$v->id}" ,["class" => ["btn btn-primary"]]); ?> <?= link_to("Supprimer", "admin/delete_formation/{$v->id}" ,["class" => ["btn btn-danger"]]); ?></td>
+					<td><?= link_to("Modifier", "admin/tutoriel/{$v->id}" ,["class" => ["btn btn-primary"]]); ?> <?= link_to("Supprimer", "admin/delete_tutoriel/{$v->id}" ,["class" => ["btn btn-danger"]]); ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

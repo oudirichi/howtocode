@@ -30,7 +30,8 @@ $router->get('/tutoriel/:slug/:slug', "tutoriel#view");
 
 
 $router->get('/admin/tutoriel/', "admin#tutoriel");
-$router->get('/admin/tutoriel/:id/', "admin#tutoriel");
+$router->get('/admin/tutoriel/:id/', "admin#edit_tutoriel");
+$router->get('/admin/tutoriel/:id/', "admin#delete_tutoriel");
 
 
 

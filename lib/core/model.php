@@ -63,6 +63,17 @@ class Model{
 		}
 	}
 
+	public function get($id, $type_fetch = "FETCH_OBJ"){
+
+		
+		$req = $this->db->query("SELECT * FROM ".$this ->table." WHERE id=?",[$id]);
+		if ($type_fetch == "FETCH_OBJ") {
+			return $req->fetch(PDO::FETCH_OBJ);
+		}else{
+			return $req->fetch();
+		}
+	}
+
 	public function query($type='first',$query,$bindings){
 
 		$stmt = $this->db->prepare($query);

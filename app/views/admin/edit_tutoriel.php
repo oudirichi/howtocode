@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 
 use lib\ViewHelper\BootsForm;
 use lib\ViewHelper\HtmlHelper;
@@ -11,7 +11,7 @@ use lib\ViewHelper\HtmlHelper;
 	}
  </style>
     <br><br>
-	<p>Cette page vous permet de nous envoyer des formation complets ou partiels.</p>
+	<p>Cette page vous permet de nous envoyer des tutoriels complets ou partiels.</p>
 	<form method="post">
 
 		<div class="row">
@@ -23,20 +23,6 @@ use lib\ViewHelper\HtmlHelper;
 				
 			</div>
 
-			<div class="col-sm-4">
-				<div class="form-group">
-					<label for="your_name">Votre nom* </label>
-					<?php  echo BootsForm::input('your_name'); ?>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				
-				<div class="form-group">
-					<label for="your_email">Courriel* </label>
-
-					<?php  echo BootsForm::input('your_email'); ?>
-				</div>
-			</div>
 		</div>
 
 		<div class="row">

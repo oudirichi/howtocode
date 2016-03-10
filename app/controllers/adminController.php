@@ -56,26 +56,21 @@ class adminController extends Controller{
 		$d=array();
 		$d['title_for_layout']= "edition tutoriel";
 
+		$render = "edit_tutoriel";
+		$d['arr_categories'] = $this->Tutoriel->categories();
+		$d['tutoriel'] = false;
 		
-		if($id==null){
-			$render = "liste_tutoriel";
-			$d['tutoriel'] = $this->Tutoriel->available_tutoriels($category);
-			//var_dump($da);die;
-			//$d= array_merge($d,$da);
+		if($id!=null){
 
-		}else{
-			$render = "view_tutoriel";
-			$id_category = array_search($category, $list_cat);
-			$da=$this->Tutoriel->tuto($id_category,$slug);
-			$d= array_merge($d,$da);
+			$d['tutoriel'] = $this->Tutoriel->get($id,"array");
 		}
-
+		$_POST = $d['tutoriel'];
 		$this->set($d);
 		$this->render($render);
 	}
 
 	function delete_tutoriel($id){
-		
+
 	}
 
 	function formation($category, $slug=null){

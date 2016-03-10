@@ -110,36 +110,6 @@ tinymce.init({
 </script>
 <script>
 	window.addEventListener("load", function(){
-		/* http://www.w3schools.com/jsref/met_win_open.asp */
-
-		/*var newWindow = window.open("", "newWindow", "resizable=yes");
-		newWindow.document.write('<p>Pop up window text</p>');*/
-		function testwindow(x) {
-		  var content;
-		  var linkWin = window.open("", "newWindow",'width=300,height=200,resizable=yes,toolbar=no');
-		  if (!linkWin.opener) { linkWin.opener = self; }
-		    content = "<!DOCTYPE html><html><head>";
-		    content += "<title>Example</title>";
-		    content += '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">';
-		    content += '</head><body bgcolor="#ccc">';
-		    content += "<p>Any HTML will work, just make sure to escape \"quotes\",";
-		    content += 'or use single-quotes instead.</p>';
-		    content += "<p>You can even pass parameters… (" + x + ")</p>";
-		    content += "</body></html>";
-		    content += '<div class="row"><div class="col-md-6">try</div><div class="col-md-6">bootstrap</div></div>';
-		    linkWin.document.open();
-		    linkWin.document.write(content);
-		    linkWin.document.close();
-		    //return false;
-		}
-		//testwindow("dghdfhdh");
-
-
-
-
-
-
-
 
 		//var editor = document.getElementById('content'); 
 		var displayer = document.getElementById('displayer');
