@@ -87,5 +87,42 @@ class Formation extends Model{
   		return $this->db->lastInsertId();
   	}
 
+	function update($id, $title, $content, $slug, $id_category, $online){
+		$this->db->query("UPDATE $this->table SET title = ?, content = ?, slug = ?, id_category = ?, online=? WHERE id=?", [
+						$title,
+						$content,
+						$slug,
+						$id_category,
+						$online,
+						$id
+					]);
+	}
+
+	function delete($id){
+		$this->db->query("DELETE FROM $this->table WHERE id = ?", [
+						$id
+					]);
+	}
+
+
+  	  function all_formation($category = null){
+  		if(!$category){
+
+	    	$select = $this->db->query("SELECT t.id, t.slug, t.title, c.name,c.link,c.icon FROM info_category c
+	                  INNER JOIN $this->table t ON t.id_category=c.id
+	                  ");
+  		}else{
+
+  			$select = $this->db->query("SELECT t.id, t.slug, t.title, c.name,c.link,c.icon FROM info_category c
+	                  INNER JOIN $this->table t ON t.id_category=c.id
+	                  WHERE c.link = ?
+	                  ", [$category]);
+
+  		}
+
+    	return $select->fetchAll(PDO::FETCH_OBJ);
+  }
+
+
   	
 }

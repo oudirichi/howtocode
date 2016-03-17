@@ -102,33 +102,86 @@ class adminController extends Controller{
 
 	}
 
-	function formation($category, $slug=null){
+	public function formation(){
 		$this->User->isAdmin();
 		$this->loadModel('Formation');
 		$d=array();
-		$d['action']= $category;
-		$d['title_for_layout']= $category;
+		$d['page'] = "Formation";
+		$d['title_for_layout'] = "Formation";
 
-		$list_cat = $this->Formation->slug_categories();
+		$d['description'] = "";
+		$d['keywords'] = "";
 
-
-		if(!in_array($category, $list_cat)){
-			lib\App::redirect('formation/');
-		}
-		
-		if($slug==null){
-			$render = "liste_formation";
-			$d['tutoriel'] = $this->Formation->available_formations($category);
-
-		}else{
-			$render = "view_formation";
-			$key = array_search($category, $list_cat); // $key = 2;
-			$da=$this->Formation->tuto($key,$slug);
-			$d= array_merge($d,$da);
-		}
+		$d['formation'] = $this->Formation->all_formation();
 
 		$this->set($d);
+		$this->render('liste_formation');
+
+	}
+	function edit_formation($id=null){
+		$this->User->isAdmin();
+		$this->loadModel('Formation');
+		$d=array();
+		$d['title_for_layout']= "edition formation";
+
+		$render = "edit_formation";
+		$d['arr_categories'] = $this->Formation->categories();
+		$d['formation'] = false;
+		
+		if($id!=null){
+
+			$d['formation'] = $this->Formation->get($id,"array");
+		}
+		$_POST = $d['formation'];
+		$this->set($d);
 		$this->render($render);
+	}
+
+	function new_formation(){
+		$this->User->isAdmin();
+		$this->loadModel('Formation');
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$slug = $_POST['slug'];
+		$id_category = $_POST['classification'];
+		$online = $_POST['online'];
+
+		$this->Formation->create($title, $content, $slug, $id_category, $online);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','La formation a bien été ajouté');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/formation");
+	}
+
+	function update_formation($id){
+		$this->User->isAdmin();
+		$this->loadModel('Formation');
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$slug = $_POST['slug'];
+		$id_category = $_POST['classification'];
+		$online = $_POST['online'];
+
+		$this->Formation->update($id, $title, $content, $slug, $id_category, $online);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','la formation a bien été modifé');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/formation");
+
+	}
+	function delete_formation($id){
+		$this->User->isAdmin();
+		$this->loadModel('Formation');
+
+		$this->Formation->delete($id);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','La formation a bien été supprimé');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/formation");
+
 	}
 
 

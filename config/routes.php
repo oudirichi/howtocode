@@ -38,4 +38,12 @@ $router->get('/admin/tutoriel/delete/:id/', "admin#delete_tutoriel");
 
 
 
+$router->get('/admin/formation/', "admin#formation");
+$router->get('/admin/formation/edit/:id/', "admin#edit_formation");
+$router->post('/admin/formation/:id/', "admin#update_formation");
+$router->get('/admin/formation/new/', "admin#edit_formation");
+$router->post('/admin/formation/', "admin#new_formation");
+$router->get('/admin/formation/delete/:id/', "admin#delete_formation");
+
+
 //$router->ressources('photos');
