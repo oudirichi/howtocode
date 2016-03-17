@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <?= link_to("#HOWTOCODE", "/", ["class" => ["navbar-brand"]]);?>
+                <?= link_to('<img style="width:15%;" src="'. lib\App::$_assets_path .'img/logo.png"/>', "/", ["class" => ["navbar-brand"]]);?>
                 
             </div>
             <!-- /.navbar-header -->
