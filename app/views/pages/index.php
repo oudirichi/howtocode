@@ -16,5 +16,5 @@
     </div>
 </div>
 
-<img src=""/>
+<img class="img-responsive" src="<?= lib\App::$_assets_path; ?>/img/aPropos.jpg"/>
 
