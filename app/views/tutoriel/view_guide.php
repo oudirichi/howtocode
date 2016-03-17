@@ -10,10 +10,6 @@ $modif = $tutoriel['modification'];
 
 		?>
 
-<?php var_dump($tutoriel); ?>
-
-
-
 <div class="content-section-b" id="content">
 
     <div class="row">
