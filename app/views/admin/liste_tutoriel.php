@@ -1,5 +1,6 @@
 ﻿<br>
-
+	<p><?= link_to("Nouveau", "admin/tutoriel/new" ,["class" => ["btn btn-primary"]]); ?>
+	</p>
 	<input type="text" id="search" placeholder="Recherche">
 	<table id="table" class="table table-striped table-responsive">
 		<thead>
@@ -14,7 +15,7 @@
 				<tr>
 					<td><?= $v->title; ?></td>
 					<td><?= $v->name; ?></td>
-					<td><?= link_to("Modifier", "admin/tutoriel/{$v->id}" ,["class" => ["btn btn-primary"]]); ?> <?= link_to("Supprimer", "admin/delete_tutoriel/{$v->id}" ,["class" => ["btn btn-danger"]]); ?></td>
+					<td><?= link_to("Modifier", "admin/tutoriel/edit/{$v->id}" ,["class" => ["btn btn-primary"]]); ?> <?= link_to("Supprimer", "admin/tutoriel/delete/{$v->id}" ,["class" => ["btn btn-danger"]]); ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>

@@ -30,8 +30,11 @@ $router->get('/tutoriel/:slug/:slug', "tutoriel#view");
 
 
 $router->get('/admin/tutoriel/', "admin#tutoriel");
-$router->get('/admin/tutoriel/:id/', "admin#edit_tutoriel");
-$router->get('/admin/tutoriel/:id/', "admin#delete_tutoriel");
+$router->get('/admin/tutoriel/edit/:id/', "admin#edit_tutoriel");
+$router->post('/admin/tutoriel/:id/', "admin#update_tutoriel");
+$router->get('/admin/tutoriel/new/', "admin#edit_tutoriel");
+$router->post('/admin/tutoriel/', "admin#new_tutoriel");
+$router->get('/admin/tutoriel/delete/:id/', "admin#delete_tutoriel");
 
 
 

@@ -11,14 +11,32 @@ use lib\ViewHelper\HtmlHelper;
 	}
  </style>
     <br><br>
-	<p>Cette page vous permet de nous envoyer des tutoriels complets ou partiels.</p>
-	<form method="post">
+	<form method="post" action="<?= (isset($tutoriel))? lib\App::$_WEBROOT_LINK. "admin/tutoriel/" . $tutoriel['id'] : lib\App::$_WEBROOT_LINK. "admin/tutoriel"; ?>">
 
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="form-group">
 				<label for="title">Sujet* </label>
 				<?php  echo BootsForm::input('title'); ?>
+				</div>
+				
+			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group">
+				<label for="title">Slug* </label>
+				<?php  echo BootsForm::input('slug'); ?>
+				</div>
+				
+			</div>
+	
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label for="classification">État</label>
+					<select class='form-control' id='online' name='online'>
+							<option value="0" <?= $tutoriel['online'] == 0 ? " selected" : "" ?>>Brouillon</option>
+							<option value="1" <?= $tutoriel['online'] == 1 ? "selected" : "" ?>>Publié</option>
+					</select>
 				</div>
 				
 			</div>
@@ -33,7 +51,12 @@ use lib\ViewHelper\HtmlHelper;
 					<select class='form-control' id='classification' name='classification'>
 						<option value="0">Selectionner une catégorie</option>
 						<?php foreach ($arr_categories as $k => $v): ?>
-							<option value="<?php echo $k; ?>"><?php echo $v['name']; ?></option>
+						
+							<?php if (isset($tutoriel)): ?>
+								<option value="<?= $v['id']; ?>" <?= $tutoriel['id_category'] == $v['id'] ? "selected" : "" ?>><?= $v['name']; ?></option>
+							<?php else: ?>
+								<option value="<?= $v['id']; ?>"><?= $v['name']; ?></option>
+							<?php endif ?>
 						<?php endforeach ?>		
 					</select>
 				</div>
@@ -101,7 +124,7 @@ tinymce.init({
 		var displayer = document.getElementById('displayer');
 
 		var content = tinyMCE.get('content');
-
+		displayer.innerHTML = tinymce.activeEditor.getContent();
 
 		/*editor.addEventListener("input", function(){
 			//displayer.innerHTML = editor.getContent();

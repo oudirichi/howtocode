@@ -69,7 +69,47 @@ class adminController extends Controller{
 		$this->render($render);
 	}
 
+	function new_tutoriel(){
+		$this->loadModel('Tutoriel');
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$slug = $_POST['slug'];
+		$id_category = $_POST['classification'];
+		$online = $_POST['online'];
+
+		$this->Tutoriel->create($title, $content, $slug, $id_category, $online);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','Le tutoriel a bien été ajouté');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/tutoriel");
+	}
+
+	function update_tutoriel($id){
+		$this->loadModel('Tutoriel');
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$slug = $_POST['slug'];
+		$id_category = $_POST['classification'];
+		$online = $_POST['online'];
+
+		$this->Tutoriel->update($id, $title, $content, $slug, $id_category, $online);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','Le tutoriel a bien été modifé');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/tutoriel");
+
+	}
 	function delete_tutoriel($id){
+		$this->loadModel('Tutoriel');
+		
+		$this->Tutoriel->delete($id);
+		$session = lib\Session::getInstance();
+		$session->setFlash('success','Le tutoriel a bien été supprimé');
+		$_POST = array();
+		unset($_SESSION['POST']);
+		\lib\App::redirect("admin/tutoriel");
 
 	}
 

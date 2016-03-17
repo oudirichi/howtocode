@@ -104,5 +104,22 @@ class Tutoriel extends Model{
   	return $this->db->lastInsertId();
 
   }
+
+  function update($id, $title, $content, $slug, $id_category, $online){
+  	$this->db->query("UPDATE $this->table SET title = ?, content = ?, slug = ?, id_category = ?, online=? WHERE id=?", [
+						$title,
+						$content,
+						$slug,
+						$id_category,
+						$online,
+						$id
+					]);
+  }
+
+  function delete($id){
+  	$this->db->query("DELETE FROM $this->table WHERE id = ?", [
+						$id
+					]);
+  }
   	
 }
