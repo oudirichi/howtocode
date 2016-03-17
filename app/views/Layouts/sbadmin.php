@@ -69,16 +69,16 @@
                         <i class="fa fa-user fa-fw"></i> <?php echo isset($_SESSION['auth']) ? $_SESSION['auth']->username : ""; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
+                        
 	                        <?php if (lib\Session::getInstance()->read('auth') == null): ?>
 	                            <li>
                                     <?= link_to('<i class="fa fa-sign-in fa-fw"></i> Login', "users/login");?>
 	                            </li>
 	                        <?php else: ?>
+                                <li>
+                                    <?= link_to('<i class="fa fa-gear fa-fw"></i> Mon compte', "users/account");?>
+                                </li>
+                                <li class="divider"></li>
                                 <li>
                                     <?= link_to('<i class="fa fa-sign-out fa-fw"></i> Logout', "users/logout");?> 
                                 </li>
@@ -217,20 +217,6 @@
         </nav>
 
         <div id="page-wrapper">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<?php if (lib\Session::getInstance()->hasFlashes()): ?>
 		<div class="row">

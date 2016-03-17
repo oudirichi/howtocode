@@ -7,24 +7,20 @@ class adminController extends Controller{
 	private $viewBlock;
 
 	function __construct(){
-		//$this->viewBlock = new \lib\ViewHelper\ViewBlock();
+		$this->loadModel('User');
 	}
 
 	public function index(){
-		$this->loadModel('User');
+		
 		$this->User->isAdmin();
-
-
 		$d=array();
-
-
 		$this->set($d);
 		$this->render('index');
 
 	}
 
 	public function tutoriel(){
-		//var_dump($_SERVER);
+		$this->User->isAdmin();
 		$this->loadModel('Tutoriel');
 		$d=array();
 		$d['page'] = "Tutoriel";
@@ -33,18 +29,7 @@ class adminController extends Controller{
 		$d['description'] = "";
 		$d['keywords'] = "";
 
-
 		$d['tutoriel'] = $this->Tutoriel->all_tutoriels();
-
-
-		/*$select = $this->db->query("SELECT c.name,c.link,c.icon,c.description FROM info_category c
-									INNER JOIN info_tutoriels t ON t.id_category=c.id
-									WHERE t.online=1
-									GROUP BY c.name,t.online
-									HAVING COUNT(t.online)>=1
-								  ");
-
-		$d['tutoriel']=$select->fetchAll();*/
 
 		$this->set($d);
 		$this->render('liste_tutoriel');
@@ -52,6 +37,7 @@ class adminController extends Controller{
 	}
 
 	function edit_tutoriel($id=null){
+		$this->User->isAdmin();
 		$this->loadModel('Tutoriel');
 		$d=array();
 		$d['title_for_layout']= "edition tutoriel";
@@ -70,6 +56,7 @@ class adminController extends Controller{
 	}
 
 	function new_tutoriel(){
+		$this->User->isAdmin();
 		$this->loadModel('Tutoriel');
 		$title = $_POST['title'];
 		$content = $_POST['content'];
@@ -86,6 +73,7 @@ class adminController extends Controller{
 	}
 
 	function update_tutoriel($id){
+		$this->User->isAdmin();
 		$this->loadModel('Tutoriel');
 		$title = $_POST['title'];
 		$content = $_POST['content'];
@@ -102,8 +90,9 @@ class adminController extends Controller{
 
 	}
 	function delete_tutoriel($id){
+		$this->User->isAdmin();
 		$this->loadModel('Tutoriel');
-		
+
 		$this->Tutoriel->delete($id);
 		$session = lib\Session::getInstance();
 		$session->setFlash('success','Le tutoriel a bien été supprimé');
@@ -114,6 +103,7 @@ class adminController extends Controller{
 	}
 
 	function formation($category, $slug=null){
+		$this->User->isAdmin();
 		$this->loadModel('Formation');
 		$d=array();
 		$d['action']= $category;

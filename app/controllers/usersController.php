@@ -117,7 +117,6 @@ class UsersController extends Controller{
 		$d['title_for_layout'] = "titre";
 		$this->loadModel('User');
 		$this->User->restrict();
-		$this->User->isAdmin();
 
 		if (!empty($_POST)) {
 			$validator = new lib\ArrayValidator($_POST);
