@@ -17,8 +17,8 @@ $router->get('/users/confirm/:id/:token', "users#confirm");
 
 $router->get('/participer/tutoriel', "participer#tutoriel");
 $router->post('/participer/tutoriel', "participer#tutoriel");
-$router->get('/participer/formation', "participer#tutoriel");
-$router->post('/participer/formation', "participer#tutoriel");
+$router->get('/participer/formation', "participer#formation");
+$router->post('/participer/formation', "participer#formation");
 
 $router->get('/formation/', "formation#index");
 $router->get('/formation/:slug', "formation#view");

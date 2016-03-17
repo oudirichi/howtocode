@@ -10,6 +10,7 @@ class participerController extends Controller{
 	function __construct(){
 		//$this->viewBlock = new \lib\ViewHelper\ViewBlock();
 		$this->loadModel('Tutoriel');
+		$this->loadModel('Formation');
 		$this->tuto_categories = $this->Tutoriel->categories();
 		$this->db = lib\App::getDatabase();
 	}
@@ -251,7 +252,7 @@ class participerController extends Controller{
 					//$inid = $this->db->prepare($query);
 	                //$inid->execute(array($content,$title,$email,$classification,$name));
 	                $slug = $this->to_slug($title);
-	                $this->Tutoriel->create($title, $content, $slug, $classification, 0);
+	                $this->Formation->create($title, $content, $slug, $classification, 0);
 
 	                if (isset($_SESSION['POST'])) {
 						unset($_SESSION['POST']);
