@@ -10,7 +10,7 @@ $modif = $tutoriel['modification'];
 
 		?>
 
-
+<?php var_dump($tutoriel); ?>
 
 
 
@@ -21,11 +21,14 @@ $modif = $tutoriel['modification'];
       <div class="col-md-12">
       	<h1><?= $title; ?></h1>
 		<?= $tutoriel['content']; ?>
-
     </div>
 
 	</div>
-	<div id="editor"><button id="cmd">generate PDF</button></div>
+	<div id="editor"><button id="cmd">generate PDF</button>
+        <div class="fb-comments" data-href="http://howtocode.oudiscape.com/tutoriel/<?= $tutoriel['fb-link']; ?>" data-numposts="20">
+            
+        </div>
+    </div>
 </div>
 		<?php ob_start(); ?>
 

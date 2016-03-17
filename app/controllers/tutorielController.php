@@ -49,6 +49,7 @@ class tutorielController extends Controller{
 			lib\App::redirect('formation/');
 		}
 		
+
 		if($slug==null){
 			$render = "liste_guide";
 			$d['tutoriel'] = $this->Tutoriel->available_tutoriels($category);
@@ -61,7 +62,7 @@ class tutorielController extends Controller{
 			$da=$this->Tutoriel->tuto($id_category,$slug);
 			$d= array_merge($d,$da);
 		}
-
+		$d['tutoriel']['fb-link'] = $category . "/" . $d['tutoriel']['slug'];
 		$this->set($d);
 		$this->render($render);
 	}
