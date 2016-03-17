@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Pascal Godin">
-
+    <link rel="icon" type="image/png" href="<?= lib\App::$_assets_path; ?>img/favicon.png" />
+    
 	<title><?php echo $title_for_layout; ?></title>
 
 
